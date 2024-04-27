@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NuclearMagneticResonance.Calibration.Serializers.Data
-{    
+namespace NuclearMagneticResonance.Calibration.Data
+{
     public enum EchoProcessingAlgorithm
-    {        
-        Linear,        
+    {
+        Linear,
         Multiexponential
     }
 }

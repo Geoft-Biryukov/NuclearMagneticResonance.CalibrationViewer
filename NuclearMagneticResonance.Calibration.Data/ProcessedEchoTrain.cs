@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NuclearMagneticResonance.Calibration.Serializers.Data
+namespace NuclearMagneticResonance.Calibration.Data
 {
     /// <summary>
     /// Эхо-сигналы, полученные при калибровке после применения всех коррекций
