@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NuclearMagneticResonance.Calibration.Serializers.Data
+namespace NuclearMagneticResonance.Calibration.Data.FundamentalTuning
 {
     public class FrequencyRelayPair
     {
-
         public FrequencyRelayPair(double frequency, byte relayCode)
         {
             Frequency = frequency;
