@@ -6,7 +6,66 @@
         xmlns:views="clr-namespace:NuclearMagneticResonance.CalibrationViewer.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="NuclearMagneticResonance.CalibrationViewer.Views.MainWindow"
+		x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="NuclearMagneticResonance.CalibrationViewer">
-        <views:MainView />
+        Title="Просмотр калибровок КарСар ЯК">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<DockPanel>
+		
+		<Menu DockPanel.Dock="Top" Margin="5">
+			<MenuItem Header="Файл">
+				<MenuItem Header="Открыть..."></MenuItem>
+				<MenuItem Header="Выход"></MenuItem>
+			</MenuItem>
+
+			<MenuItem Header="Настройки">
+				<MenuItem Header="Тема">
+					<MenuItem Header="Тёмная" />
+					<MenuItem Header="Светлая" />
+				</MenuItem>				
+			</MenuItem>
+
+			<MenuItem Header="Справка">
+				<MenuItem Header="О программе..."></MenuItem>				
+			</MenuItem>
+		</Menu>
+		
+	<SplitView IsPaneOpen="{Binding IsPaneOpen}"
+			   DockPanel.Dock="Top"
+			   OpenPaneLength="300"
+			   CompactPaneLength="48"
+			   DisplayMode="CompactInline"
+			   Background="Black"
+			   PaneBackground="#1e1e1e">
+		<SplitView.Pane>
+			<StackPanel 
+				Spacing="5"
+				Margin="5">
+				<Button Command="{Binding TriggerPaneCommand}">
+					-
+				</Button>
+				<ListBox ItemsSource="{Binding Items}">
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="{x:Type vm:ListItemTemplate}">
+							<StackPanel Spacing="15" Orientation="Horizontal">
+								<TextBlock Text="{Binding Label}" />
+							</StackPanel>							
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</SplitView.Pane>
+		
+		<SplitView.Content>
+			<Border CornerRadius="12"
+					Background="#2d2d2d">
+				<TransitioningContentControl Content="{Binding CurrentPage}"/>
+			</Border>
+		</SplitView.Content>
+	</SplitView>
+	</DockPanel>
 </Window>

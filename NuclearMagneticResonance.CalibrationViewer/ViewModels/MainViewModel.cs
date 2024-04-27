@@ -1,6 +1,9 @@
-﻿namespace NuclearMagneticResonance.CalibrationViewer.ViewModels;
+﻿using ReactiveUI;
+using System.Windows.Input;
+
+namespace NuclearMagneticResonance.CalibrationViewer.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    public string Greeting => "Welcome to Avalonia!";
+    
 }
