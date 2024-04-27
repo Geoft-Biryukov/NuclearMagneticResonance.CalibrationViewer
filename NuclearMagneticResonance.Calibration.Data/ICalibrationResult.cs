@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NuclearMagneticResonance.Calibration.Serializers
+namespace NuclearMagneticResonance.Calibration.Data
 {
     public interface ICalibrationResult
     {
