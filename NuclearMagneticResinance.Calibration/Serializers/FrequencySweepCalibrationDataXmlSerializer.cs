@@ -1,10 +1,4 @@
 ﻿using NuclearMagneticResonance.Calibration.Data.FrequencySweep;
-using NuclearMagneticResonance.Calibration.Serializers.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace NuclearMagneticResonance.Calibration.Serializers
