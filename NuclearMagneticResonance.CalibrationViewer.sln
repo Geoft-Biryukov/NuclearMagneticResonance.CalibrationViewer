@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuclearMagneticResonance.CalibrationViewer", "NuclearMagneticResonance.CalibrationViewer\NuclearMagneticResonance.CalibrationViewer.csproj", "{79067AF6-7ED1-4180-AFC4-A526F706CC60}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuclearMagneticResonance.CalibrationViewer.Desktop", "NuclearMagneticResonance.CalibrationViewer.Desktop\NuclearMagneticResonance.CalibrationViewer.Desktop.csproj", "{63D8F14C-9C01-40B6-BD6C-C35BF069B1E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79067AF6-7ED1-4180-AFC4-A526F706CC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79067AF6-7ED1-4180-AFC4-A526F706CC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79067AF6-7ED1-4180-AFC4-A526F706CC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79067AF6-7ED1-4180-AFC4-A526F706CC60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D8F14C-9C01-40B6-BD6C-C35BF069B1E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D8F14C-9C01-40B6-BD6C-C35BF069B1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D8F14C-9C01-40B6-BD6C-C35BF069B1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D8F14C-9C01-40B6-BD6C-C35BF069B1E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BAE5210D-868D-4D42-BE18-681960C1E8CB}
+	EndGlobalSection
+EndGlobal
