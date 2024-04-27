@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NuclearMagneticResonance.Calibration.Serializers.Data
+namespace NuclearMagneticResonance.Calibration.Data.FrequencySweep
 {
     public class FrequencySweepCalibrationData
     {

@@ -1,4 +1,5 @@
-﻿using NuclearMagneticResonance.Calibration.Serializers.Data;
+﻿using NuclearMagneticResonance.Calibration.Data;
+using NuclearMagneticResonance.Calibration.Serializers.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

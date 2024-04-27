@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuclearMagneticResonance.Ca
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuclearMagneticResonance.Utils", "NuclearMagneticResonance.Utils", "{D4282634-F6D5-4A21-8E03-9CB24B10B1A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuclearMagneticResonance.Calibration", "NuclearMagneticResinance.Calibration\NuclearMagneticResonance.Calibration.csproj", "{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuclearMagneticResonance.Calibration", "NuclearMagneticResinance.Calibration\NuclearMagneticResonance.Calibration.csproj", "{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuclearMagneticResonance.Calibration.Data", "NuclearMagneticResonance.Calibration.Data\NuclearMagneticResonance.Calibration.Data.csproj", "{71103E96-A136-4134-ABF0-0BEDB5B8BA2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +31,17 @@ Global
 		{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71103E96-A136-4134-ABF0-0BEDB5B8BA2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71103E96-A136-4134-ABF0-0BEDB5B8BA2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71103E96-A136-4134-ABF0-0BEDB5B8BA2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71103E96-A136-4134-ABF0-0BEDB5B8BA2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7EAFA573-A871-4CEA-825D-4C4A3E672B8F} = {D4282634-F6D5-4A21-8E03-9CB24B10B1A5}
+		{71103E96-A136-4134-ABF0-0BEDB5B8BA2C} = {D4282634-F6D5-4A21-8E03-9CB24B10B1A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BAE5210D-868D-4D42-BE18-681960C1E8CB}

@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NuclearMagneticResonance.Calibration.Data\NuclearMagneticResonance.Calibration.Data.csproj" />
-  </ItemGroup>
-
 </Project>
