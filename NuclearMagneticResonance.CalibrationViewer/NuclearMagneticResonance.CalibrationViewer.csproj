@@ -29,4 +29,13 @@
       <SubType>Designer</SubType>
     </AvaloniaXaml>
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\FrequencySweepPageView.axaml.cs">
+      <DependentUpon>FrequencySweepPageView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SummaryPageView.axaml.cs">
+      <DependentUpon>SummaryPageView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

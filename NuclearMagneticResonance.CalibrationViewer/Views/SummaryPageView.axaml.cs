@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace NuclearMagneticResonance.CalibrationViewer.Views
 {
-    public partial class FrequencySweepView : UserControl
+    public partial class SummaryPageView : UserControl
     {
-        public FrequencySweepView()
+        public SummaryPageView()
         {
             InitializeComponent();
         }

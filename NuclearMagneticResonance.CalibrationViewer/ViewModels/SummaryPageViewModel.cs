@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace NuclearMagneticResonance.CalibrationViewer.ViewModels
 {
-    public class HomePageViewModel : ViewModelBase
+    public class SummaryPageViewModel : ViewModelBase
     {
-        public HomePageViewModel()
+        public SummaryPageViewModel()
         {
             
         }

@@ -17,8 +17,8 @@ public class MainWindowViewModel : ViewModelBase
 
     private readonly ObservableCollection<ListItemTemplate> templateList =
     [
-        new ListItemTemplate(typeof(HomePageViewModel), "Сводная информация", "SummaryRegular"), 
-        new ListItemTemplate(typeof(FrequencySweepViewModel), "Калибровка резонансных частот", "ServiceBellRegular"),
+        new ListItemTemplate(typeof(SummaryPageViewModel), "Сводная информация", "SummaryRegular"), 
+        new ListItemTemplate(typeof(FrequencySweepPageViewModel), "Калибровка резонансных частот", "ServiceBellRegular"),
     ];
 
     public ObservableCollection<ListItemTemplate> Items
@@ -60,7 +60,7 @@ public class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref isPaneOpen, value);
     }
 
-    private ViewModelBase currentPage = new HomePageViewModel();
+    private ViewModelBase currentPage = new SummaryPageViewModel();
     public ViewModelBase CurrentPage
     {
         get => currentPage;
