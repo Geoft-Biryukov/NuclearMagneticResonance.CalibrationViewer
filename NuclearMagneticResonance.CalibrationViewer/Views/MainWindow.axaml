@@ -46,12 +46,13 @@
 				Spacing="5"
 				Margin="5">
 				<Button Command="{Binding TriggerPaneCommand}">
-					-
+					<PathIcon Data="{StaticResource LineHorizontal3Regular}"></PathIcon>
 				</Button>
-				<ListBox ItemsSource="{Binding Items}">
+				<ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
 					<ListBox.ItemTemplate>
 						<DataTemplate DataType="{x:Type vm:ListItemTemplate}">
 							<StackPanel Spacing="15" Orientation="Horizontal">
+								<PathIcon Data="{Binding ListItemIcon}"/>
 								<TextBlock Text="{Binding Label}" />
 							</StackPanel>							
 						</DataTemplate>

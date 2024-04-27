@@ -13,6 +13,6 @@ namespace NuclearMagneticResonance.CalibrationViewer.ViewModels
             
         }
 
-        public string Text { get; } = "Hello";
+        public string Text { get; } = "Сводная информация";
     }
 }

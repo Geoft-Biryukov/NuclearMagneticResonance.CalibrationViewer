@@ -1,4 +1,7 @@
-﻿using ReactiveUI;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Media;
+using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -14,12 +17,32 @@ public class MainWindowViewModel : ViewModelBase
 
     private readonly ObservableCollection<ListItemTemplate> templateList =
     [
-        new ListItemTemplate(typeof(HomePageViewModel))
+        new ListItemTemplate(typeof(HomePageViewModel), "Сводная информация", "SummaryRegular"), 
+        new ListItemTemplate(typeof(FrequencySweepViewModel), "Калибровка резонансных частот", "ServiceBellRegular"),
     ];
 
     public ObservableCollection<ListItemTemplate> Items
     {
         get => templateList;
+    }
+
+    private ListItemTemplate selectedItem;
+    public ListItemTemplate SelectedItem
+    {
+        get => selectedItem;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref selectedItem, value);
+            SelectView(value);
+        }
+    }
+
+    private void SelectView(ListItemTemplate value)
+    {
+        if (value is null) return;
+        var instance = Activator.CreateInstance(value.ModelType);
+        if(instance is null) return;
+        CurrentPage = (ViewModelBase)instance;
     }
 
     public ICommand TriggerPaneCommand { get; }
@@ -47,13 +70,18 @@ public class MainWindowViewModel : ViewModelBase
 
 public class ListItemTemplate
 {
-    public ListItemTemplate(Type type)
+    public ListItemTemplate(Type type, string label, string iconKey)
     {
         ModelType = type;
-        Label = type.Name.Replace("PageViewModel", string.Empty);
+        Label = label;
+
+        Application.Current!.TryFindResource(iconKey, out var resource);
+
+        ListItemIcon = (StreamGeometry)resource!;
     }
 
     public string Label { get; }
     public Type ModelType { get; }
+    public StreamGeometry ListItemIcon { get; }
 }
 

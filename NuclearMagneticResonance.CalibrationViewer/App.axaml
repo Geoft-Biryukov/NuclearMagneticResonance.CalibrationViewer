@@ -10,5 +10,6 @@
 	</Application.DataTemplates>
     <Application.Styles>
         <FluentTheme />
+		<StyleInclude Source="avares://NuclearMagneticResonance.CalibrationViewer/Assets/Icons.axaml"></StyleInclude>
     </Application.Styles>
 </Application>
