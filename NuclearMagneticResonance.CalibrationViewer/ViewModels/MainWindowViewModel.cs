@@ -26,8 +26,8 @@ public class MainWindowViewModel : ViewModelBase
         get => templateList;
     }
 
-    private ListItemTemplate selectedItem;
-    public ListItemTemplate SelectedItem
+    private ListItemTemplate? selectedItem;
+    public ListItemTemplate? SelectedItem
     {
         get => selectedItem;
         set
@@ -37,7 +37,7 @@ public class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private void SelectView(ListItemTemplate value)
+    private void SelectView(ListItemTemplate? value)
     {
         if (value is null) return;
         var instance = Activator.CreateInstance(value.ModelType);

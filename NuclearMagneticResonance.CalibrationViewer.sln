@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuclearMagneticResonance.Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuclearMagneticResonance.CalibrationViewer.Desktop", "NuclearMagneticResonance.CalibrationViewer.Desktop\NuclearMagneticResonance.CalibrationViewer.Desktop.csproj", "{63D8F14C-9C01-40B6-BD6C-C35BF069B1E4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuclearMagneticResonance.Utils", "NuclearMagneticResonance.Utils", "{D4282634-F6D5-4A21-8E03-9CB24B10B1A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuclearMagneticResonance.Calibration", "NuclearMagneticResinance.Calibration\NuclearMagneticResonance.Calibration.csproj", "{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{63D8F14C-9C01-40B6-BD6C-C35BF069B1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63D8F14C-9C01-40B6-BD6C-C35BF069B1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63D8F14C-9C01-40B6-BD6C-C35BF069B1E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAFA573-A871-4CEA-825D-4C4A3E672B8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7EAFA573-A871-4CEA-825D-4C4A3E672B8F} = {D4282634-F6D5-4A21-8E03-9CB24B10B1A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BAE5210D-868D-4D42-BE18-681960C1E8CB}
