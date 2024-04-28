@@ -1,6 +1,8 @@
-﻿using System;
+﻿using NuclearMagneticResonance.Calibration.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -12,11 +14,13 @@ namespace NuclearMagneticResonance.Calibration.Serializers
         private const string nuclearMagneticResonanceCalibrationElementName = "NuclearMagneticResonanceCalibration";
         private const string fundamentalTuningPartElementName = "FundamentalTuning";
 
-        public void Deserialize(string FileName)
+        public bool Deserialize(string FileName, out NmrCalibrationDocument doc)
         {
             if (FileName == null)
                 throw new ArgumentNullException(nameof(FileName));
-            
+
+            doc = new NmrCalibrationDocument();
+
             var xmlDoc = new XmlDocument();
 
             xmlDoc.Load(FileName);
@@ -25,48 +29,52 @@ namespace NuclearMagneticResonance.Calibration.Serializers
                 throw new Exception();
 
             var rootElement = (XmlElement)xmlDoc.GetElementsByTagName(nuclearMagneticResonanceCalibrationElementName)[0];
+            
+            if(rootElement == null)
+                return false;
 
             #region Fundamental Tuning
             var generalSerializer = new GeneralSettingsXmlSerializer();
             var generalSettings = generalSerializer.Deserialize(rootElement);
-            // doc.GeneralSettings = generalSettings ?? throw new SerializerException(nameof(GeneralSettings));
+            if(generalSettings == null) return false;
+            doc.GeneralSettings = generalSettings;
             #endregion
 
             #region Frequency Sweep
             var frequencySweepSerializer = new FrequencySweepCalibrationDataXmlSerializer();
             var data = frequencySweepSerializer.Deserialize(rootElement);
 
-            //if (data == null)
-            //    throw new SerializerException(nameof(FrequencySweepCalibrationData));
+            if (data == null)
+                return false;
 
-            //doc.FrequencySweepSettings = data.Settings;
-            //doc.FrequencySweepResults = data.Results;
-            //doc.IsFrequencySweepComplete = data.IsComplete;
+            doc.FrequencySweepSettings = data.Settings;
+            doc.FrequencySweepResults = data.Results;
+            doc.IsFrequencySweepComplete = data.IsComplete;
             #endregion
 
             #region Transmitter Calibration
             var transmitterCalibrationSerializer = new TransmitterCalibrationDataXmlSerializer();
             var transmitterCalibrationData = transmitterCalibrationSerializer.Deserialize(rootElement);
 
-            //if (transmitterCalibrationData == null)
-            //    throw new SerializerException(nameof(TransmitterCalibrationData));
+            if (transmitterCalibrationData == null)
+                return false;
 
-            //doc.TransmitterCalibrationSettings = transmitterCalibrationData.Settings;
-            //doc.TransmitterCalibrationResults = transmitterCalibrationData.Results;
-            //doc.IsTransmitterCalibrationComplete = transmitterCalibrationData.IsComplete;
-            //doc.TransmitterCalibrationSettings.Use = Enumerable.Repeat(true, NmrCalibrationDocument.FrequenciesCount).ToArray();
+            doc.TransmitterCalibrationSettings = transmitterCalibrationData.Settings;
+            doc.TransmitterCalibrationResults = transmitterCalibrationData.Results;
+            doc.IsTransmitterCalibrationComplete = transmitterCalibrationData.IsComplete;
+           // doc.TransmitterCalibrationSettings.Use = Enumerable.Repeat(true, NmrCalibrationDocument.FrequenciesCount).ToArray();
             #endregion
 
             #region Receiver Calibration
             var receiverCalibrationSerializer = new ReceiverCalibrationDataXmlSerializer();
             var receiverCalibrationData = receiverCalibrationSerializer.Deserialize(rootElement);
 
-            //if (receiverCalibrationData == null)
-            //    throw new SerializerException(nameof(ReceiverCalibrationData));
+            if (receiverCalibrationData == null)
+                return false;
 
-            //doc.ReceiverCalibrationSettings = receiverCalibrationData.Settings;
-            //doc.ReceiverCalibrationResults = receiverCalibrationData.Results;
-            //doc.IsReceiverCalibrationComplete = receiverCalibrationData.IsComplete;
+            doc.ReceiverCalibrationSettings = receiverCalibrationData.Settings;
+            doc.ReceiverCalibrationResults = receiverCalibrationData.Results;
+            doc.IsReceiverCalibrationComplete = receiverCalibrationData.IsComplete;
             //doc.ReceiverCalibrationSettings.Use = Enumerable.Repeat(true, NmrCalibrationDocument.FrequenciesCount).ToArray();
             #endregion
 
@@ -104,7 +112,7 @@ namespace NuclearMagneticResonance.Calibration.Serializers
 
             #endregion
 
-            //doc.IsLoaded = true;
+            return true;
         }
     }
 }

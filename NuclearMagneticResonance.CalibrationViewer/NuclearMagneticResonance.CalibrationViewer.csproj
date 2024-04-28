@@ -25,6 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NuclearMagneticResinance.Calibration\NuclearMagneticResonance.Calibration.csproj" />
+    <ProjectReference Include="..\NuclearMagneticResonance.Calibration.Data\NuclearMagneticResonance.Calibration.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <AvaloniaXaml Update="Assets\icons.axaml">
       <SubType>Designer</SubType>
     </AvaloniaXaml>

@@ -11,13 +11,15 @@
     <vm:SummaryPageViewModel/>
   </Design.DataContext>
 
-  <StackPanel Spacing="10"
+  <ScrollViewer HorizontalScrollBarVisibility="Visible">
+  <StackPanel Spacing="5"
               Margin="11">
     <TextBlock Text="{Binding Text}"
                HorizontalAlignment="Center"
                FontSize="22">
     </TextBlock>
-    <StackPanel Spacing="10">
+    <StackPanel Spacing="5"
+                Margin="0 0 0 20">
       <TextBlock>Путь к файлу:</TextBlock>
       <TextBox Text="{Binding Path}"
                HorizontalAlignment="Left"
@@ -26,7 +28,8 @@
                Width="500">        
       </TextBox>
     </StackPanel>
-    <StackPanel Spacing="10">
+    <StackPanel Spacing="5"
+                Margin="0 0 0 20">
       <TextBlock>Номер прибора:</TextBlock>
       <TextBox Text="{Binding ToolNumber}"
                HorizontalAlignment="Left"
@@ -35,7 +38,8 @@
                Width="500">
       </TextBox>
     </StackPanel>
-    <StackPanel Spacing="10">
+    <StackPanel Spacing="5"
+                Margin="0 0 0 20">
       <TextBlock>Дата калибровки:</TextBlock>
       <TextBox Text="{Binding CalibrationDate}"
                HorizontalAlignment="Left"
@@ -44,9 +48,10 @@
                Width="500">
       </TextBox>
     </StackPanel>
-    <StackPanel Spacing="10">
+    <StackPanel Spacing="5"
+                Margin="0 0 0 20">
       <TextBlock>Дополнительная информация:</TextBlock>
-      <TextBox Text="{Binding Description}"
+      <TextBox Text="{Binding FurtherInformation}"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                IsReadOnly="True"
@@ -55,4 +60,5 @@
       </TextBox>
     </StackPanel>
   </StackPanel>
+  </ScrollViewer>
 </UserControl>

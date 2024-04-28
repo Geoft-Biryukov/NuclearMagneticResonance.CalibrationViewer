@@ -45,11 +45,11 @@ namespace NuclearMagneticResonance.CalibrationViewer.ViewModels
             set => this.RaiseAndSetIfChanged(ref toolNumber, value);
         }
 
-        private string description = string.Empty;
-        public string Description
+        private string furtherInformation = string.Empty;
+        public string FurtherInformation
         {
-            get => description;
-            set => this.RaiseAndSetIfChanged(ref description, value);
+            get => furtherInformation;
+            set => this.RaiseAndSetIfChanged(ref furtherInformation, value);
         }
 
         protected override void OnCalibrationStorePropertyChanged(string? propertyName)
@@ -59,6 +59,8 @@ namespace NuclearMagneticResonance.CalibrationViewer.ViewModels
             if(CalibrationStore.Path != null && propertyName == nameof(CalibrationStore.Path)) 
             {
                 Path = CalibrationStore.Path;
+                ToolNumber = CalibrationStore.ToolNumber!;
+                FurtherInformation = CalibrationStore.FurtherInformation!;
             }
         }
     }

@@ -12,10 +12,7 @@ public partial class MainWindow : Window
 {
     public MainWindow()
     {
-        InitializeComponent();
-
-        //Application.Current.RequestedThemeVariant = new Avalonia.Styling.ThemeVariant("Light", null);
-        //RequestedThemeVariant = new Avalonia.Styling.ThemeVariant("Light", null);
+        InitializeComponent();       
 
         OpenFile.Click += OpenFileClick;
     }
@@ -41,7 +38,7 @@ public partial class MainWindow : Window
 
         if(viewModel == null) return;
 
-        viewModel.FileName = files.First().Path.AbsolutePath;
+        viewModel.FileName = files.First().Path.LocalPath;
     }
 
     private static IReadOnlyList<FilePickerFileType> CreateFileFileters()
