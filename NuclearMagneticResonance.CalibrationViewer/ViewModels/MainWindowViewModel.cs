@@ -11,6 +11,9 @@ namespace NuclearMagneticResonance.CalibrationViewer.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
+    public MainWindowViewModel() : base(new NMRCalibrationStore())
+    { }
+
     public MainWindowViewModel(NMRCalibrationStore store)
         : base(store)
     {
@@ -43,9 +46,10 @@ public class MainWindowViewModel : ViewModelBase
     private void SelectView(ListItemTemplate? value)
     {
         if (value is null) return;
+
         var instance = Activator.CreateInstance(value.ModelType, CalibrationStore);
-        if(instance is null) return;
-        CurrentPage = (ViewModelBase)instance;
+        if (instance is null) return;
+        CurrentPage = (ViewModelBase)instance;        
     }
 
     public ICommand TriggerPaneCommand { get; }
@@ -79,9 +83,7 @@ public class MainWindowViewModel : ViewModelBase
             this.RaiseAndSetIfChanged(ref fileName, value);
             CalibrationStore.Path = value;
         }
-    }
-
-    
+    }    
 }
 
 public class ListItemTemplate
@@ -98,6 +100,6 @@ public class ListItemTemplate
 
     public string Label { get; }
     public Type ModelType { get; }
-    public StreamGeometry ListItemIcon { get; }
+    public StreamGeometry ListItemIcon { get; }      
 }
 
