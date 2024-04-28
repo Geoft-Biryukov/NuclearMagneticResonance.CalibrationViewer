@@ -15,9 +15,13 @@ namespace NuclearMagneticResonance.CalibrationViewer.ViewModels
 
         public SummaryPageViewModel(NMRCalibrationStore calibrationStore)
             : base(calibrationStore)
-        { }
+        {
+            Path = CalibrationStore.Path ?? string.Empty;            
+            ToolNumber = CalibrationStore.ToolNumber ?? string.Empty;
+            FurtherInformation = CalibrationStore.FurtherInformation ?? string.Empty;
+        }
 
-        private string text = "Сводная информация";        
+        private string text = "Общая информация";        
         public string Text 
         {
             get => text; 
@@ -56,10 +60,18 @@ namespace NuclearMagneticResonance.CalibrationViewer.ViewModels
         {
             base.OnCalibrationStorePropertyChanged(propertyName);
 
-            if(CalibrationStore.Path != null && propertyName == nameof(CalibrationStore.Path)) 
+            if (propertyName == nameof(CalibrationStore.Path) && CalibrationStore.Path != null)
             {
                 Path = CalibrationStore.Path;
+            }
+
+            if (propertyName == nameof(CalibrationStore.ToolNumber) && CalibrationStore.ToolNumber != null)
+            {
                 ToolNumber = CalibrationStore.ToolNumber!;
+            }
+
+            if (propertyName == nameof(CalibrationStore.FurtherInformation) && CalibrationStore.FurtherInformation != null)
+            {
                 FurtherInformation = CalibrationStore.FurtherInformation!;
             }
         }
