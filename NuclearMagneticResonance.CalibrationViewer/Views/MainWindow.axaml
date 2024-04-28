@@ -18,7 +18,7 @@
 		
 		<Menu DockPanel.Dock="Top" Margin="5">
 			<MenuItem Header="Файл">
-				<MenuItem Header="Открыть..."></MenuItem>
+				<MenuItem Header="Открыть..." Name="OpenFile"></MenuItem>
 				<MenuItem Header="Выход"></MenuItem>
 			</MenuItem>
 
