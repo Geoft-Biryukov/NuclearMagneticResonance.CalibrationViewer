@@ -66,6 +66,13 @@ public class MainWindowViewModel : ViewModelBase
         get => currentPage;
         set => this.RaiseAndSetIfChanged(ref currentPage, value);
     }
+
+    private string fileName = string.Empty;
+    public string FileName 
+    {
+        get => fileName; 
+        set => this.RaiseAndSetIfChanged(ref fileName, value); 
+    }
 }
 
 public class ListItemTemplate
