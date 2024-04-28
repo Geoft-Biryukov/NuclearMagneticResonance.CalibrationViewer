@@ -1,15 +1,58 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:vm="using:NuclearMagneticResonance.CalibrationViewer.ViewModels"
+			       xmlns:vm="using:NuclearMagneticResonance.CalibrationViewer.ViewModels"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="NuclearMagneticResonance.CalibrationViewer.Views.SummaryPageView"
 			 x:DataType="vm:SummaryPageViewModel">
 
-	<Design.DataContext>
-		<vm:SummaryPageViewModel/>
-	</Design.DataContext>
-  
-  <TextBlock Text="{Binding Text}"></TextBlock>
+  <Design.DataContext>
+    <vm:SummaryPageViewModel/>
+  </Design.DataContext>
+
+  <StackPanel Spacing="10"
+              Margin="11">
+    <TextBlock Text="{Binding Text}"
+               HorizontalAlignment="Center"
+               FontSize="22">
+    </TextBlock>
+    <StackPanel Spacing="10">
+      <TextBlock>Путь к файлу:</TextBlock>
+      <TextBox Text="{Binding Path}"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top" 
+               IsReadOnly="True"
+               Width="500">        
+      </TextBox>
+    </StackPanel>
+    <StackPanel Spacing="10">
+      <TextBlock>Номер прибора:</TextBlock>
+      <TextBox Text="{Binding ToolNumber}"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top" 
+               IsReadOnly="True"
+               Width="500">
+      </TextBox>
+    </StackPanel>
+    <StackPanel Spacing="10">
+      <TextBlock>Дата калибровки:</TextBlock>
+      <TextBox Text="{Binding CalibrationDate}"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               IsReadOnly="True"
+               Width="500">
+      </TextBox>
+    </StackPanel>
+    <StackPanel Spacing="10">
+      <TextBlock>Дополнительная информация:</TextBlock>
+      <TextBox Text="{Binding Description}"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               IsReadOnly="True"
+               Width="500"
+               Height="150">
+      </TextBox>
+    </StackPanel>
+  </StackPanel>
 </UserControl>
