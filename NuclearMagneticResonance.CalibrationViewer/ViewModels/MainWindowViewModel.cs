@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
+using NuclearMagneticResonance.CalibrationViewer.Model;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
@@ -10,9 +11,11 @@ namespace NuclearMagneticResonance.CalibrationViewer.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public MainWindowViewModel()
+    public MainWindowViewModel(NMRCalibrationStore store)
+        : base(store)
     {
         TriggerPaneCommand = ReactiveCommand.Create(TriggerPane);
+        currentPage = new SummaryPageViewModel(CalibrationStore);
     }
 
     private readonly ObservableCollection<ListItemTemplate> templateList =
@@ -40,7 +43,7 @@ public class MainWindowViewModel : ViewModelBase
     private void SelectView(ListItemTemplate? value)
     {
         if (value is null) return;
-        var instance = Activator.CreateInstance(value.ModelType);
+        var instance = Activator.CreateInstance(value.ModelType, CalibrationStore);
         if(instance is null) return;
         CurrentPage = (ViewModelBase)instance;
     }
@@ -60,7 +63,7 @@ public class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref isPaneOpen, value);
     }
 
-    private ViewModelBase currentPage = new SummaryPageViewModel();
+    private ViewModelBase currentPage; 
     public ViewModelBase CurrentPage
     {
         get => currentPage;
@@ -70,9 +73,15 @@ public class MainWindowViewModel : ViewModelBase
     private string fileName = string.Empty;
     public string FileName 
     {
-        get => fileName; 
-        set => this.RaiseAndSetIfChanged(ref fileName, value); 
+        get => fileName;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref fileName, value);
+            CalibrationStore.Path = value;
+        }
     }
+
+    
 }
 
 public class ListItemTemplate
