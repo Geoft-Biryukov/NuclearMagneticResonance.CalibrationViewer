@@ -6,9 +6,10 @@
         xmlns:views="clr-namespace:NuclearMagneticResonance.CalibrationViewer.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="NuclearMagneticResonance.CalibrationViewer.Views.MainWindow"
-		x:DataType="vm:MainWindowViewModel"
+				x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Просмотр калибровок КарСар ЯК">
+        Title="Просмотр калибровок КарСар ЯК"
+        RequestedThemeVariant="Dark">
 
 	<Design.DataContext>
 		<vm:MainWindowViewModel/>

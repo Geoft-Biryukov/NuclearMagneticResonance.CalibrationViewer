@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.2" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
@@ -38,6 +39,9 @@
   <ItemGroup>
     <Compile Update="Views\FrequencySweepPageView.axaml.cs">
       <DependentUpon>FrequencySweepPageView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\GeneralSettingsPageView.axaml.cs">
+      <DependentUpon>GeneralSettingsPageView.axaml</DependentUpon>
     </Compile>
     <Compile Update="Views\SummaryPageView.axaml.cs">
       <DependentUpon>SummaryPageView.axaml</DependentUpon>
