@@ -1,4 +1,5 @@
 ﻿using NuclearMagneticResonance.Calibration.Data;
+using NuclearMagneticResonance.Calibration.Data.FrequencySweep;
 using NuclearMagneticResonance.Calibration.Data.FundamentalTuning;
 using NuclearMagneticResonance.Calibration.Serializers;
 using System;
@@ -87,6 +88,27 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             CalibrationPulsesCount = document.FrequencySweepSettings.CalibrationPulsesCount.ToString();
             RepeatCount = document.FrequencySweepSettings.RepeatCount.ToString();
             ExperimentsInTableCount = document.FrequencySweepSettings.ExperimentsInTableCount.ToString();
+
+            var data = new List<FrequencySweepData>();
+
+            foreach (var result in document.FrequencySweepResults)
+            {
+                data.Add(FromFrequencySweepResult(result));
+            }
+
+            FrequencySweepDatas = data;
+        }
+
+        private static FrequencySweepData FromFrequencySweepResult(FrequencySweepResult result)
+        {
+            return new FrequencySweepData
+            {
+                BaseFrequency = result.BaseFrequency.ToString(),
+                CalculatedAmplitude = result.CalculatedAmplitude.ToString("0.00"),
+                CalculatedFrequency = result.CalculatedFrequency.ToString("0.00"),
+                Noise = result.Noise.ToString("0.000"),
+                Quality = result.Quality.ToString("0.00"),
+            };
         }
        
         private void SetRelayPairs(FrequencyRelayPair[]? frequencyRelayTable)
@@ -112,7 +134,7 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
 
             MagneticFieldPairs = pairs;
         }
-
+        #region Information
         private string? path = null;
         public string? Path
         {
@@ -140,7 +162,9 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             get => furtherInformation;
             set => Set(nameof(FurtherInformation), ref furtherInformation, value);
         }
+        #endregion
 
+        #region General settings
         private Dictionary<string, string>? relayFrequencyPairs = new Dictionary<string, string>();
         public Dictionary<string, string>? RelayFrequencyPairs
         {
@@ -162,6 +186,7 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MagneticFieldPairs)));
             }
         }
+        #endregion
 
         #region Frequency sweep settings
         private string calibrationDate = string.Empty;        
@@ -193,6 +218,17 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
         }
         #endregion
 
+        private IEnumerable<FrequencySweepData>? frequencySweepDatas;
+        public IEnumerable<FrequencySweepData>? FrequencySweepDatas
+        {
+            get => frequencySweepDatas;
+
+            set
+            {
+                frequencySweepDatas = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FrequencySweepDatas)));
+            }
+        }
 
         private void Set<T>(string? propertyName, ref T field, T value)
         {

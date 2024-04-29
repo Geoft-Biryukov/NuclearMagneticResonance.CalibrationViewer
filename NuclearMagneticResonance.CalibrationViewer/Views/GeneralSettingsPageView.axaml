@@ -46,7 +46,8 @@
                     GridLinesVisibility="All"
                     BorderThickness="1"
                     BorderBrush="Bisque"                    
-                    ClipboardCopyMode="IncludeHeader">
+                    ClipboardCopyMode="IncludeHeader"
+                    HorizontalAlignment="Left">
             <DataGrid.Columns>
               <DataGridTextColumn Header="Код реле"                                 
                                   Binding="{Binding Relay}"/>
@@ -68,7 +69,8 @@
                     GridLinesVisibility="All"
                     BorderThickness="1"
                     BorderBrush="Bisque"
-                    ClipboardCopyMode="IncludeHeader">
+                    ClipboardCopyMode="IncludeHeader"
+                    HorizontalAlignment="Left">
             <DataGrid.Columns>
               <DataGridTextColumn Header="Расстояние, мм"  Binding="{Binding Distance}" />
               <DataGridTextColumn Header="Магнитное поле, Гс" Binding="{Binding MagneticField}" />

@@ -61,6 +61,41 @@
           
         </Grid>
       </StackPanel>
+      <StackPanel Margin="10 20 30 0">
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="10 0 0 0">
+          Таблица кодов реле:
+        </TextBlock>
+        <DataGrid Name="RelayFrequencyDataGrid"
+                  Margin="10"
+                  ItemsSource="{Binding FrequencySweepDatas}"
+                  AutoGenerateColumns="False"
+                  CanUserSortColumns="False"
+                  IsReadOnly="True"
+                  GridLinesVisibility="All"
+                  BorderThickness="1"
+                  BorderBrush="Bisque"
+                  ClipboardCopyMode="IncludeHeader" 
+                  HorizontalAlignment="Left">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="Базовая частота, кГц"
+                                Binding="{Binding BaseFrequency}"/>
+
+            <DataGridTextColumn Header="Калибровочная частота, кГц"
+                                Binding="{Binding CalculatedFrequency}"/>
+
+            <DataGridTextColumn Header="Добротность"
+                                Binding="{Binding Quality}"/>
+
+            <DataGridTextColumn Header="Амплитуда"
+                                Binding="{Binding CalculatedAmplitude}"/>
+
+            <DataGridTextColumn Header="Шум, %"
+                                Binding="{Binding Noise}"/>
+          </DataGrid.Columns>
+        </DataGrid>
+      </StackPanel>
+      
     </StackPanel>
 
   </ScrollViewer>

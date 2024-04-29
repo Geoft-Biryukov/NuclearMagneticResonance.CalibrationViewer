@@ -1,6 +1,7 @@
 using NuclearMagneticResonance.CalibrationViewer.Model;
 using ReactiveUI;
 using System;
+using System.Collections.ObjectModel;
 
 namespace NuclearMagneticResonance.CalibrationViewer.ViewModels;
 
@@ -24,6 +25,19 @@ public class FrequencySweepPageViewModel : ViewModelBase
         CalibrationPulsesCount = CalibrationStore.CalibrationPulsesCount;
         RepeatCount = CalibrationStore.RepeatCount;
         ExperimentsInTableCount = CalibrationStore.ExperimentsInTableCount;
+
+        UpdateFrequencySweepDatas();
+    }
+
+    private void UpdateFrequencySweepDatas()
+    {
+        FrequencySweepDatas.Clear();
+
+        if (CalibrationStore.FrequencySweepDatas == null)
+            return;
+
+        foreach(var data in CalibrationStore.FrequencySweepDatas)
+            FrequencySweepDatas.Add(data);
     }
 
     protected override void OnCalibrationStorePropertyChanged(string? propertyName)
@@ -33,6 +47,7 @@ public class FrequencySweepPageViewModel : ViewModelBase
         UpdateProperties();
     }
 
+    #region settings
     private string calibrationDate = string.Empty;
     public string CalibrationDate
     {
@@ -60,4 +75,9 @@ public class FrequencySweepPageViewModel : ViewModelBase
         get => experimentsInTableCount;
         set => this.RaiseAndSetIfChanged(ref experimentsInTableCount, value);
     }
+    #endregion
+    
+    public ObservableCollection<FrequencySweepData> FrequencySweepDatas { get; } = new ObservableCollection<FrequencySweepData>();
+
 }
+
