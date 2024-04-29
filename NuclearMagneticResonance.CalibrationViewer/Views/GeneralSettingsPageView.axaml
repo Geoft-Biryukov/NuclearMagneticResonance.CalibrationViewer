@@ -1,0 +1,81 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:NuclearMagneticResonance.CalibrationViewer.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="NuclearMagneticResonance.CalibrationViewer.Views.GeneralSettingsPageView"
+             x:DataType="vm:GeneralSettingsPageViewModel">
+
+  <Design.DataContext>
+    <vm:GeneralSettingsPageViewModel/>
+  </Design.DataContext>
+
+  <ScrollViewer HorizontalScrollBarVisibility="Visible">
+    <StackPanel Spacing="5"
+                Margin="11">
+      <TextBlock Text="Базовая настройка"
+                   HorizontalAlignment="Center"
+                   FontSize="22"
+                 Margin="0 0 0 20">
+      </TextBlock>
+      <StackPanel Margin="10" Spacing="10">
+        <TextBlock Text="Дата базовой настройки:"/>
+        <TextBox Width="300"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 Margin="0 0 0 30"
+                 Text="{Binding InitializationDate}">
+          
+        </TextBox>
+      </StackPanel>
+      
+      <StackPanel Width="300" 
+                  HorizontalAlignment="Left" 
+                  Orientation="Horizontal">
+        <StackPanel Margin="10 0 30 0">
+          <TextBlock HorizontalAlignment="Center">
+            Таблица кодов реле:
+          </TextBlock>
+          <DataGrid Name="RelayFrequencyDataGrid"
+                    Margin="10"                    
+                    ItemsSource="{Binding FrequencyRelayPairs}"
+                    AutoGenerateColumns="False"
+                    CanUserSortColumns="False"
+                    IsReadOnly="True"
+                    GridLinesVisibility="All"
+                    BorderThickness="1"
+                    BorderBrush="Bisque"                    
+                    ClipboardCopyMode="IncludeHeader">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Код реле"                                 
+                                  Binding="{Binding Relay}"/>
+              
+              <DataGridTextColumn Header="Частота, кГц" 
+                                  Binding="{Binding Frequency}" />
+            </DataGrid.Columns>            
+          </DataGrid>
+        </StackPanel>
+        <StackPanel Margin="30 0 0 0">
+          <TextBlock HorizontalAlignment="Center">
+            Таблица градиентов:
+          </TextBlock>
+          <DataGrid Margin="10"
+                    ItemsSource="{Binding MagneticFieldPairs}"
+                    AutoGenerateColumns="False"
+                    CanUserSortColumns="False"
+                    IsReadOnly="True"
+                    GridLinesVisibility="All"
+                    BorderThickness="1"
+                    BorderBrush="Bisque"
+                    ClipboardCopyMode="IncludeHeader">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Расстояние, мм"  Binding="{Binding Distance}" />
+              <DataGridTextColumn Header="Магнитное поле, Гс" Binding="{Binding MagneticField}" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </StackPanel>
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

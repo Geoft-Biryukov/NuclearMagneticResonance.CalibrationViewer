@@ -1,4 +1,5 @@
 ﻿using NuclearMagneticResonance.Calibration.Data;
+using NuclearMagneticResonance.Calibration.Data.FundamentalTuning;
 using NuclearMagneticResonance.Calibration.Serializers;
 using System;
 using System.Collections.Generic;
@@ -68,8 +69,35 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             if (document.GeneralSettings == null)
                 return;
 
+            InitializationDate = document.GeneralSettings.InitializationDate.ToString("dd.MM.yyyy");
             ToolNumber = document.GeneralSettings.ToolNumber;
             FurtherInformation = document.GeneralSettings?.FurtherInformation;
+            SetRelayPairs(document.GeneralSettings.FrequencyRelayTable);
+            SetMagneticFieldPairs(document.GeneralSettings.MagneticFieldParameters);
+        }
+       
+        private void SetRelayPairs(FrequencyRelayPair[]? frequencyRelayTable)
+        {
+            var pairs = new Dictionary<string, string>();
+
+            foreach (var pair in frequencyRelayTable)
+            {
+                pairs.Add(pair.RelayCode.ToString(), pair.Frequency.ToString());
+            }
+
+            RelayFrequencyPairs = pairs;
+        }
+        
+        private void SetMagneticFieldPairs(MagneticFieldParameters[]? magneticFieldParameters)
+        {
+            var pairs = new Dictionary<string, string>();
+
+            foreach (var pair in magneticFieldParameters)
+            {
+                pairs.Add(pair.Distance.ToString(), pair.MagneticField.ToString());
+            }
+
+            MagneticFieldPairs = pairs;
         }
 
         private string? path = null;
@@ -77,6 +105,13 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
         {
             get => path; 
             set => Set(nameof(Path), ref path, value);
+        }
+
+        private string initializationDate = string.Empty;
+        public string? InitializationDate
+        {
+            get => initializationDate;
+            set => Set(nameof(InitializationDate), ref initializationDate, value);
         }
 
         private string toolNumber = string.Empty;
@@ -91,6 +126,28 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
         {
             get => furtherInformation;
             set => Set(nameof(FurtherInformation), ref furtherInformation, value);
+        }
+
+        private Dictionary<string, string>? relayFrequencyPairs = new Dictionary<string, string>();
+        public Dictionary<string, string>? RelayFrequencyPairs
+        {
+            get => relayFrequencyPairs;
+            set
+            {
+                relayFrequencyPairs = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RelayFrequencyPairs)));
+            }
+        }
+
+        private Dictionary<string, string>? magneticFieldPairs = new Dictionary<string, string>();
+        public Dictionary<string, string>? MagneticFieldPairs
+        {
+            get => magneticFieldPairs;
+            set
+            {
+                magneticFieldPairs = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MagneticFieldPairs)));
+            }
         }
 
         private void Set<T>(string? propertyName, ref T field, T value)

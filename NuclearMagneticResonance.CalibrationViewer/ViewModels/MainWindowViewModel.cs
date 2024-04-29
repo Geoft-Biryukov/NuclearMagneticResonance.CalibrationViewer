@@ -23,8 +23,10 @@ public class MainWindowViewModel : ViewModelBase
 
     private readonly ObservableCollection<ListItemTemplate> templateList =
     [
-        new ListItemTemplate(typeof(SummaryPageViewModel), "Сводная информация", "SummaryRegular"), 
+        new ListItemTemplate(typeof(SummaryPageViewModel), "Общая информация", "SummaryRegular"), 
+        new ListItemTemplate(typeof(GeneralSettingsPageViewModel), "Базовая настройка", "SettingsRegular"),
         new ListItemTemplate(typeof(FrequencySweepPageViewModel), "Калибровка резонансных частот", "ServiceBellRegular"),
+        
     ];
 
     public ObservableCollection<ListItemTemplate> Items
