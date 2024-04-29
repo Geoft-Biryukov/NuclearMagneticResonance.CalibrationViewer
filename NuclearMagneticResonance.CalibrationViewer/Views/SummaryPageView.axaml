@@ -20,12 +20,13 @@
     </TextBlock>
     <StackPanel Spacing="5"
                 Margin="0 0 0 20">
-      <TextBlock>Путь к файлу:</TextBlock>
+      <TextBlock>Файл калибровки ЯК:</TextBlock>
       <TextBox Text="{Binding Path}"
                HorizontalAlignment="Left"
                VerticalAlignment="Top" 
                IsReadOnly="True"
-               Width="500">        
+               Width="500"
+               ToolTip.Tip="{Binding Path}">        
       </TextBox>
     </StackPanel>
     <StackPanel Spacing="5"
