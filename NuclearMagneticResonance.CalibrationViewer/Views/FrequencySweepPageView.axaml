@@ -6,9 +6,62 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="NuclearMagneticResonance.CalibrationViewer.Views.FrequencySweepPageView"
 			 x:DataType="vm:FrequencySweepPageViewModel">
-	<Design.DataContext>
-		<vm:FrequencySweepPageViewModel/>
-	</Design.DataContext>
+  <Design.DataContext>
+    <vm:FrequencySweepPageViewModel/>
+  </Design.DataContext>
 
-	<TextBlock FontSize="20">Калибровка резонансных частот</TextBlock>
+  <ScrollViewer HorizontalScrollBarVisibility="Visible">
+    <StackPanel Spacing="5"
+                Margin="11">
+      <TextBlock Text="Калибровка резонансных частот"
+                   HorizontalAlignment="Center"
+                   FontSize="22"
+                 Margin="0 0 0 20">
+      </TextBlock>
+      <StackPanel Margin="10" Spacing="10">
+        <TextBlock Text="Дата калибровки:"/>
+        <TextBox Width="400"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 Margin="0 0 0 30"
+                 Text="{Binding CalibrationDate}">
+        </TextBox>
+      </StackPanel>
+      <StackPanel>
+        <TextBlock Text="Настройки калибровки:" 
+                   HorizontalAlignment="Left"
+                   Padding="100 0 0 10"></TextBlock>
+        <Grid ColumnDefinitions="*,1.5*,4*" RowDefinitions="Auto,Auto,Auto"  Margin="4">
+          <TextBlock Text="Количество импульсов, шт:"                     
+                     Grid.Row="0" 
+                     Grid.Column="0" 
+                     Margin="7"/>
+          <TextBox Grid.Row="0" 
+                   Grid.Column="1" 
+                   Text="{Binding CalibrationPulsesCount}"
+                   Margin="0 0 0 10"></TextBox>
+          
+          <TextBlock Text="Количество повторений, шт:" 
+                     Grid.Row="1" 
+                     Grid.Column="0"
+                     Margin="7"/>                    
+          <TextBox Grid.Row="1" 
+                   Grid.Column="1"
+                   Text="{Binding RepeatCount}"
+                   Margin="0 0 0 10"></TextBox>
+
+          <TextBlock Text="Количество циклов, шт:"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="7"/>
+          <TextBox Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding ExperimentsInTableCount}"
+                   Margin="0 0 0 10"></TextBox>
+          
+        </Grid>
+      </StackPanel>
+    </StackPanel>
+
+  </ScrollViewer>
 </UserControl>

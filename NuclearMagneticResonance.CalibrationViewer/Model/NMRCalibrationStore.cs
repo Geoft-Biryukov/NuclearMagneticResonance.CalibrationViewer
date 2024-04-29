@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -62,8 +63,9 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
                 return;
 
             UpdateGeneralSettingsProperties(calibrationDocument);
+            UpdateFrequencySweepProperties(calibrationDocument);
         }
-
+       
         private void UpdateGeneralSettingsProperties(NmrCalibrationDocument document)
         {
             if (document.GeneralSettings == null)
@@ -74,6 +76,17 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             FurtherInformation = document.GeneralSettings?.FurtherInformation;
             SetRelayPairs(document.GeneralSettings.FrequencyRelayTable);
             SetMagneticFieldPairs(document.GeneralSettings.MagneticFieldParameters);
+        }
+        
+        private void UpdateFrequencySweepProperties(NmrCalibrationDocument document)
+        {
+            if (document.FrequencySweepSettings == null || document.FrequencySweepResults == null)
+                return;
+
+            CalibrationDate = document.FrequencySweepResults[0].CalibrationDate?.ToString("dd.MM.yyyy HH:mm:ss") ?? string.Empty;
+            CalibrationPulsesCount = document.FrequencySweepSettings.CalibrationPulsesCount.ToString();
+            RepeatCount = document.FrequencySweepSettings.RepeatCount.ToString();
+            ExperimentsInTableCount = document.FrequencySweepSettings.ExperimentsInTableCount.ToString();
         }
        
         private void SetRelayPairs(FrequencyRelayPair[]? frequencyRelayTable)
@@ -149,6 +162,37 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MagneticFieldPairs)));
             }
         }
+
+        #region Frequency sweep settings
+        private string calibrationDate = string.Empty;        
+        public string CalibrationDate
+        {
+            get => calibrationDate;
+            set => Set(nameof(CalibrationDate), ref calibrationDate, value);
+        }
+        
+        private string calibrationPulsesCount;
+        public string CalibrationPulsesCount
+        {
+            get => calibrationPulsesCount;
+            private set => Set(nameof(CalibrationPulsesCount), ref calibrationPulsesCount, value);
+        }
+
+        private string repeatCount;
+        public string RepeatCount
+        {
+            get => repeatCount;
+            private set => Set(nameof(RepeatCount), ref repeatCount, value);
+        }
+
+        private string experimentsInTableCount = string.Empty;
+        public string ExperimentsInTableCount
+        {
+            get => experimentsInTableCount;
+            set => Set(nameof(ExperimentsInTableCount), ref experimentsInTableCount, value);
+        }
+        #endregion
+
 
         private void Set<T>(string? propertyName, ref T field, T value)
         {

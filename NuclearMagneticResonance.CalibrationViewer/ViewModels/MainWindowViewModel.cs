@@ -25,7 +25,7 @@ public class MainWindowViewModel : ViewModelBase
     [
         new ListItemTemplate(typeof(SummaryPageViewModel), "Общая информация", "SummaryRegular"), 
         new ListItemTemplate(typeof(GeneralSettingsPageViewModel), "Базовая настройка", "SettingsRegular"),
-        new ListItemTemplate(typeof(FrequencySweepPageViewModel), "Калибровка резонансных частот", "ServiceBellRegular"),
+        new ListItemTemplate(typeof(FrequencySweepPageViewModel), "Калибровка резонансных частот", "DataScatterRegular"),
         
     ];
 
