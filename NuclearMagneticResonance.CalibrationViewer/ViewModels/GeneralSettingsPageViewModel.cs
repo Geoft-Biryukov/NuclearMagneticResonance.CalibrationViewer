@@ -1,5 +1,6 @@
 ﻿using DynamicData;
 using NuclearMagneticResonance.CalibrationViewer.Model;
+using NuclearMagneticResonance.CalibrationViewer.Views;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,27 @@ namespace NuclearMagneticResonance.CalibrationViewer.ViewModels
             {
                 InitializationDate = CalibrationStore.InitializationDate;
             }
+
+            if (propertyName! == nameof(CalibrationStore.MagneticFieldParameters))
+            {
+                UpdatePlot();
+            }
+        }
+
+        private void UpdatePlot()
+        {
+            if (!(Control is GeneralSettingsPageView view))
+                return;
+
+            if (CalibrationStore.MagneticFieldParameters == null)
+                return;
+
+            foreach (var result in CalibrationStore.MagneticFieldParameters)
+            {
+                view.MagneticFieldPlot.Add.Scatter(result.Distance, result.MagneticField);
+            }
+
+            view.RefreshMagneticFieldPlot();
         }
 
         private string initializationDate = string.Empty;
@@ -83,6 +105,13 @@ namespace NuclearMagneticResonance.CalibrationViewer.ViewModels
             }
 
             MagneticFieldPairs.AddRange(list);
+        }
+
+        public override void UpdateAllProperties()
+        {
+            base.UpdateAllProperties();
+
+            UpdatePlot();
         }
     }    
 

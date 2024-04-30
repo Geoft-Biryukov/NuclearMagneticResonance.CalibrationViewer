@@ -3,7 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:NuclearMagneticResonance.CalibrationViewer.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:ScottPlot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="850"
              x:Class="NuclearMagneticResonance.CalibrationViewer.Views.GeneralSettingsPageView"
              x:DataType="vm:GeneralSettingsPageViewModel">
 
@@ -57,7 +58,7 @@
             </DataGrid.Columns>            
           </DataGrid>
         </StackPanel>
-        <StackPanel Margin="30 0 0 0">
+        <StackPanel Margin="30 0 30 0">
           <TextBlock HorizontalAlignment="Center">
             Таблица градиентов:
           </TextBlock>
@@ -76,6 +77,17 @@
               <DataGridTextColumn Header="Магнитное поле, Гс" Binding="{Binding MagneticField}" />
             </DataGrid.Columns>
           </DataGrid>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock Margin="30 0 20 10"
+                     HorizontalAlignment="Center">
+            График магнитного поля:
+          </TextBlock>
+          <ScottPlot:AvaPlot Name="magneticFieldPlot"
+                             Margin="30 0 0 20"
+                             Width="700"
+                             Height="450"
+                             HorizontalAlignment="Left"/>
         </StackPanel>
       </StackPanel>
     </StackPanel>
