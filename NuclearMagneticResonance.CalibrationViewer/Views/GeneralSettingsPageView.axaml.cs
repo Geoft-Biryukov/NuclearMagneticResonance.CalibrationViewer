@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using ScottPlot;
 
 namespace NuclearMagneticResonance.CalibrationViewer.Views
 {
@@ -7,6 +8,16 @@ namespace NuclearMagneticResonance.CalibrationViewer.Views
         public GeneralSettingsPageView()
         {
             InitializeComponent();
+
+            MagneticFieldPlot = magneticFieldPlot.Plot;
+        }
+
+        public Plot MagneticFieldPlot { get; }
+
+        public void RefreshMagneticFieldPlot()
+        {
+            magneticFieldPlot.Plot.Axes.AutoScale();
+            magneticFieldPlot.Refresh();
         }
     }
 }

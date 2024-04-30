@@ -99,6 +99,8 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             FrequencySweepDatas = data;
 
             FrequencySweepResults = document.FrequencySweepResults;
+
+            MagneticFieldParameters = document.GeneralSettings.MagneticFieldParameters;
         }
 
         private static FrequencySweepData FromFrequencySweepResult(FrequencySweepResult result)
@@ -186,6 +188,17 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             {
                 magneticFieldPairs = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MagneticFieldPairs)));
+            }
+        }
+
+        private MagneticFieldParameters[] magneticFieldParameters;
+        public MagneticFieldParameters[] MagneticFieldParameters
+        {
+            get => magneticFieldParameters;
+            set
+            {
+                magneticFieldParameters = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MagneticFieldParameters)));
             }
         }
         #endregion
