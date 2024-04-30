@@ -1,4 +1,5 @@
-﻿using NuclearMagneticResonance.CalibrationViewer.Model;
+﻿using Avalonia.Controls;
+using NuclearMagneticResonance.CalibrationViewer.Model;
 using ReactiveUI;
 
 namespace NuclearMagneticResonance.CalibrationViewer.ViewModels;
@@ -22,4 +23,11 @@ public class ViewModelBase : ReactiveObject
     }
 
     protected NMRCalibrationStore CalibrationStore { get; }
+
+    public Control Control {  get; set; }
+
+    public virtual void UpdateAllProperties()
+    {
+
+    }
 }

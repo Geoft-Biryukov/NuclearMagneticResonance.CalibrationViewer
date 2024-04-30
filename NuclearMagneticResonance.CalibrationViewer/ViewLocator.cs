@@ -14,7 +14,15 @@ public class ViewLocator : IDataTemplate
 
         if (type != null)
         {
-            return (Control?)Activator.CreateInstance(type)!;
+            var control = (Control?)Activator.CreateInstance(type)!;
+
+            if(param != null && param is ViewModelBase viewModel) 
+            {
+                viewModel.Control = control;
+                viewModel.UpdateAllProperties();
+            }
+
+            return control;
         }
 
         return new TextBlock { Text = "Not Found" + name };

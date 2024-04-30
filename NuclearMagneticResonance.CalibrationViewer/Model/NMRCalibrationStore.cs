@@ -1,4 +1,5 @@
 ﻿using NuclearMagneticResonance.Calibration.Data;
+using NuclearMagneticResonance.Calibration.Data.FrequencySweep;
 using NuclearMagneticResonance.Calibration.Data.FundamentalTuning;
 using NuclearMagneticResonance.Calibration.Serializers;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -62,8 +64,9 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
                 return;
 
             UpdateGeneralSettingsProperties(calibrationDocument);
+            UpdateFrequencySweepProperties(calibrationDocument);
         }
-
+       
         private void UpdateGeneralSettingsProperties(NmrCalibrationDocument document)
         {
             if (document.GeneralSettings == null)
@@ -74,6 +77,40 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             FurtherInformation = document.GeneralSettings?.FurtherInformation;
             SetRelayPairs(document.GeneralSettings.FrequencyRelayTable);
             SetMagneticFieldPairs(document.GeneralSettings.MagneticFieldParameters);
+        }
+        
+        private void UpdateFrequencySweepProperties(NmrCalibrationDocument document)
+        {
+            if (document.FrequencySweepSettings == null || document.FrequencySweepResults == null)
+                return;
+
+            CalibrationDate = document.FrequencySweepResults[0].CalibrationDate?.ToString("dd.MM.yyyy HH:mm:ss") ?? string.Empty;
+            CalibrationPulsesCount = document.FrequencySweepSettings.CalibrationPulsesCount.ToString();
+            RepeatCount = document.FrequencySweepSettings.RepeatCount.ToString();
+            ExperimentsInTableCount = document.FrequencySweepSettings.ExperimentsInTableCount.ToString();
+
+            var data = new List<FrequencySweepData>();
+
+            foreach (var result in document.FrequencySweepResults)
+            {
+                data.Add(FromFrequencySweepResult(result));
+            }
+
+            FrequencySweepDatas = data;
+
+            FrequencySweepResults = document.FrequencySweepResults;
+        }
+
+        private static FrequencySweepData FromFrequencySweepResult(FrequencySweepResult result)
+        {
+            return new FrequencySweepData
+            {
+                BaseFrequency = result.BaseFrequency.ToString(),
+                CalculatedAmplitude = result.CalculatedAmplitude.ToString("0.00"),
+                CalculatedFrequency = result.CalculatedFrequency.ToString("0.00"),
+                Noise = result.Noise.ToString("0.000"),
+                Quality = result.Quality.ToString("0.00"),
+            };
         }
        
         private void SetRelayPairs(FrequencyRelayPair[]? frequencyRelayTable)
@@ -99,7 +136,7 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
 
             MagneticFieldPairs = pairs;
         }
-
+        #region Information
         private string? path = null;
         public string? Path
         {
@@ -127,7 +164,9 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             get => furtherInformation;
             set => Set(nameof(FurtherInformation), ref furtherInformation, value);
         }
+        #endregion
 
+        #region General settings
         private Dictionary<string, string>? relayFrequencyPairs = new Dictionary<string, string>();
         public Dictionary<string, string>? RelayFrequencyPairs
         {
@@ -147,6 +186,60 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             {
                 magneticFieldPairs = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MagneticFieldPairs)));
+            }
+        }
+        #endregion
+
+        #region Frequency sweep settings
+        private string calibrationDate = string.Empty;        
+        public string CalibrationDate
+        {
+            get => calibrationDate;
+            set => Set(nameof(CalibrationDate), ref calibrationDate, value);
+        }
+        
+        private string calibrationPulsesCount;
+        public string CalibrationPulsesCount
+        {
+            get => calibrationPulsesCount;
+            private set => Set(nameof(CalibrationPulsesCount), ref calibrationPulsesCount, value);
+        }
+
+        private string repeatCount;
+        public string RepeatCount
+        {
+            get => repeatCount;
+            private set => Set(nameof(RepeatCount), ref repeatCount, value);
+        }
+
+        private string experimentsInTableCount = string.Empty;
+        public string ExperimentsInTableCount
+        {
+            get => experimentsInTableCount;
+            set => Set(nameof(ExperimentsInTableCount), ref experimentsInTableCount, value);
+        }
+        #endregion
+
+        private IEnumerable<FrequencySweepData>? frequencySweepDatas;
+        public IEnumerable<FrequencySweepData>? FrequencySweepDatas
+        {
+            get => frequencySweepDatas;
+
+            set
+            {
+                frequencySweepDatas = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FrequencySweepDatas)));
+            }
+        }
+
+        private FrequencySweepResult[] frequencySweepResults;
+        public FrequencySweepResult[] FrequencySweepResults
+        {
+            get => frequencySweepResults;
+            set
+            {
+                frequencySweepResults = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FrequencySweepResults)));
             }
         }
 
