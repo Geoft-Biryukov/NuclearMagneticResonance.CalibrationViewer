@@ -2,10 +2,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:vm="using:NuclearMagneticResonance.CalibrationViewer.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			       xmlns:vm="using:NuclearMagneticResonance.CalibrationViewer.ViewModels"
+             xmlns:ScottPlot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="1500" d:DesignHeight="850"
              x:Class="NuclearMagneticResonance.CalibrationViewer.Views.FrequencySweepPageView"
-			 x:DataType="vm:FrequencySweepPageViewModel">
+			       x:DataType="vm:FrequencySweepPageViewModel">
   <Design.DataContext>
     <vm:FrequencySweepPageViewModel/>
   </Design.DataContext>
@@ -27,53 +28,57 @@
                  Text="{Binding CalibrationDate}">
         </TextBox>
       </StackPanel>
-      <StackPanel>
+      <StackPanel>        
         <TextBlock Text="Настройки калибровки:" 
                    HorizontalAlignment="Left"
-                   Padding="100 0 0 10"></TextBlock>
+                   Padding="10 0 0 10"></TextBlock>
         <Grid ColumnDefinitions="*,1.5*,4*" RowDefinitions="Auto,Auto,Auto"  Margin="4">
-          <TextBlock Text="Количество импульсов, шт:"                     
+          <TextBlock Text="Количество импульсов, шт:"   
                      Grid.Row="0" 
                      Grid.Column="0" 
                      Margin="7"/>
           <TextBox Grid.Row="0" 
                    Grid.Column="1" 
-                   Text="{Binding CalibrationPulsesCount}"
+                   Text="{Binding CalibrationPulsesCount}"   
+                   IsReadOnly="True"
                    Margin="0 0 0 10"></TextBox>
           
-          <TextBlock Text="Количество повторений, шт:" 
+          <TextBlock Text="Количество циклов, шт:" 
                      Grid.Row="1" 
                      Grid.Column="0"
                      Margin="7"/>                    
           <TextBox Grid.Row="1" 
                    Grid.Column="1"
                    Text="{Binding RepeatCount}"
+                   IsReadOnly="True"
                    Margin="0 0 0 10"></TextBox>
 
-          <TextBlock Text="Количество циклов, шт:"
+          <TextBlock Text="Количество повторений, шт:"
                     Grid.Row="2"
                     Grid.Column="0"
                     Margin="7"/>
           <TextBox Grid.Row="2"
                    Grid.Column="1"
                    Text="{Binding ExperimentsInTableCount}"
+                   IsReadOnly="True"
                    Margin="0 0 0 10"></TextBox>
           
         </Grid>
       </StackPanel>
       <StackPanel Margin="10 20 30 0">
+        
         <TextBlock HorizontalAlignment="Left"
                    Margin="10 0 0 0">
-          Таблица кодов реле:
+          Таблица калибровки частот:
         </TextBlock>
         <DataGrid Name="RelayFrequencyDataGrid"
-                  Margin="10"
+                  Margin="10 10 30 20 "
                   ItemsSource="{Binding FrequencySweepDatas}"
                   AutoGenerateColumns="False"
                   CanUserSortColumns="False"
                   IsReadOnly="True"
                   GridLinesVisibility="All"
-                  BorderThickness="1"
+                  BorderThickness="2"
                   BorderBrush="Bisque"
                   ClipboardCopyMode="IncludeHeader" 
                   HorizontalAlignment="Left">
@@ -94,8 +99,14 @@
                                 Binding="{Binding Noise}"/>
           </DataGrid.Columns>
         </DataGrid>
-      </StackPanel>
-      
+               
+        <TextBlock Margin="10 0 0 10"> Графики амплитуд:</TextBlock>
+        <ScottPlot:AvaPlot Name="amplitudePlot" 
+                           Margin="10"
+                           Width="700" 
+                           Height="450" 
+                           HorizontalAlignment="Left"/>
+      </StackPanel>      
     </StackPanel>
 
   </ScrollViewer>

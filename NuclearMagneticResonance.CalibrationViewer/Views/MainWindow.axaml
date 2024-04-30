@@ -9,7 +9,8 @@
 				x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="Просмотр калибровок КарСар ЯК"
-        RequestedThemeVariant="Dark">
+        RequestedThemeVariant="Dark" 
+        WindowState="Maximized">
 
 	<Design.DataContext>
 		<vm:MainWindowViewModel/>

@@ -97,6 +97,8 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             }
 
             FrequencySweepDatas = data;
+
+            FrequencySweepResults = document.FrequencySweepResults;
         }
 
         private static FrequencySweepData FromFrequencySweepResult(FrequencySweepResult result)
@@ -227,6 +229,17 @@ namespace NuclearMagneticResonance.CalibrationViewer.Model
             {
                 frequencySweepDatas = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FrequencySweepDatas)));
+            }
+        }
+
+        private FrequencySweepResult[] frequencySweepResults;
+        public FrequencySweepResult[] FrequencySweepResults
+        {
+            get => frequencySweepResults;
+            set
+            {
+                frequencySweepResults = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FrequencySweepResults)));
             }
         }
 

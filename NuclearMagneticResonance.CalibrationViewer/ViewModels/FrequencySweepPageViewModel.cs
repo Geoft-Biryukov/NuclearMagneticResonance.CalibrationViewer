@@ -1,5 +1,7 @@
 using NuclearMagneticResonance.CalibrationViewer.Model;
+using NuclearMagneticResonance.CalibrationViewer.Views;
 using ReactiveUI;
+using ScottPlot;
 using System;
 using System.Collections.ObjectModel;
 
@@ -13,7 +15,16 @@ public class FrequencySweepPageViewModel : ViewModelBase
     public FrequencySweepPageViewModel(NMRCalibrationStore store)
         :base(store)
     {
+        UpdateProperties();       
+    }
+
+
+    public override void UpdateAllProperties()
+    {
+        base.UpdateAllProperties();
+
         UpdateProperties();
+        UpdatePlot();
     }
 
     private void UpdateProperties()
@@ -26,8 +37,8 @@ public class FrequencySweepPageViewModel : ViewModelBase
         RepeatCount = CalibrationStore.RepeatCount;
         ExperimentsInTableCount = CalibrationStore.ExperimentsInTableCount;
 
-        UpdateFrequencySweepDatas();
-    }
+        UpdateFrequencySweepDatas();        
+    }   
 
     private void UpdateFrequencySweepDatas()
     {
@@ -39,12 +50,31 @@ public class FrequencySweepPageViewModel : ViewModelBase
         foreach(var data in CalibrationStore.FrequencySweepDatas)
             FrequencySweepDatas.Add(data);
     }
+    
+    private void UpdatePlot()
+    {
+        if (!(Control is FrequencySweepPageView view))
+            return;
+
+        if (CalibrationStore.FrequencySweepResults == null)
+            return;
+
+        foreach (var result in CalibrationStore.FrequencySweepResults)
+        {
+            view.AmplitudePlot.Add.Scatter(result.Frequencies, result.Amplitudes);            
+        }
+
+        view.RefreshAmplitudePlot();
+    }
 
     protected override void OnCalibrationStorePropertyChanged(string? propertyName)
     {
         base.OnCalibrationStorePropertyChanged(propertyName);
 
         UpdateProperties();
+
+        if (propertyName == nameof(CalibrationStore.FrequencySweepResults))
+            UpdatePlot();
     }
 
     #region settings
